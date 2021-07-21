@@ -2,8 +2,8 @@
 
 git clone https://github.com/guillez/laravel-eet.git
 
-#2 - Acceder a la carpeta
-
+#2 - Dar permisos y Acceder a la carpeta
+chmod 777 laravel-eet -R
 cd laravel-eet
 
 #3 - Configurar archivo .env 
@@ -12,24 +12,13 @@ cp .env.exameple .env
 
 mcedit .env
 
-APP_NAME=Laravel
-APP_ENV=local
-APP_KEY=base64:okZmFqjib4W0V6zJyT/aqsE/+rIkDJhMZtkLQ54Glw8=
-APP_DEBUG=true
-APP_URL=http://localhost:8000
+(Los parametros minimos a modificar son:)
 
-LOG_CHANNEL=stack
-LOG_LEVEL=debug
+-APP_URL=http://localhost:8000
 
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=clave
+-DB_HOST=mysql
 
-
-Si no existe copiar el archivo .env.example y configurar parametros
+-DB_PASSWORD=clave
 
 #4 - Generar imagen requerida por el contenedor
 
@@ -51,13 +40,10 @@ docker exec app php artisan key:generate
 
 docker exec app php artisan migrate
 
-#9 - COnfiguro login de laravel
+Luego probar con un navegador el acceso, el sistema mediante el nginx-proxy se encuentra en puerto 80 
+por lo que al instalar en forma local es http://localhost
 
-docker exec app composer require laravel/ui
 
-docker exec app php artisan ui:auth
-
-docker exec app php artisan migrate
 
 
 
