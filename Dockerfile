@@ -27,6 +27,10 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # Obtengo la Ultima version de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Install NodeJS
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update && apt-get install -y nodejs && apt-get clean
+
 # Creo el usuario para correr comandos de Composer y Artisan
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 
